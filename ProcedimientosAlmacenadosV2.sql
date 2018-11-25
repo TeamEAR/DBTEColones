@@ -290,7 +290,7 @@ BEGIN
 	
 	BEGIN TRAN
 	BEGIN TRY
-		EXEC @IdInformacionBasica = InsertarInformacionBasica @Nombre, @PrimerApellido, SegundoApellido, @Identificacion, @Correo, @Contraseña, @Telefono, @NombreRol, @IdInformacionBasica
+		EXEC @IdInformacionBasica = InsertarInformacionBasica @Nombre, @PrimerApellido, @SegundoApellido, @Identificacion, @Correo, @Contraseña, @Telefono, @NombreRol, @IdInformacionBasica
 		INSERT INTO Estudiante(FechaIncorporacion, Pasatiempo, IdSedeXTEC, IdInformacionBasica) VALUES (@FechaIncorporacion, @Pasatiempo, @IdSedeXTEC, @IdInformacionBasica)
 		COMMIT TRANSACTION
 	END TRY
@@ -332,7 +332,7 @@ BEGIN
 	BEGIN TRAN
 	BEGIN TRY
 
-		EXEC @IdInformacionBasica = InsertarInformacionBasica @Nombre, @PrimerApellido, SegundoApellido, @Identificacion, @Correo, @Contraseña, @Telefono, @NombreRol, @IdInformacionBasica
+		EXEC @IdInformacionBasica = InsertarInformacionBasica @Nombre, @PrimerApellido, @SegundoApellido, @Identificacion, @Correo, @Contraseña, @Telefono, @NombreRol, @IdInformacionBasica
 		INSERT INTO Administrador(IdDepartamento, IdInformacionBasica) VALUES (@IdDepartamento, @IdInformacionBasica)
 		COMMIT TRANSACTION
 	END TRY
@@ -405,7 +405,7 @@ BEGIN
 	
 	BEGIN TRAN
 	BEGIN TRY
-		EXEC @IdInformacionBasica = InsertarInformacionBasica @Nombre, @PrimerApellido, SegundoApellido, @Identificacion, @Correo, @Contraseña, @Telefono, @NombreRol, @IdInformacionBasica
+		EXEC @IdInformacionBasica = InsertarInformacionBasica @Nombre, @PrimerApellido, @SegundoApellido, @Identificacion, @Correo, @Contraseña, @Telefono, @NombreRol, @IdInformacionBasica
 		INSERT INTO EncargadoCentroAcopio(IdInformacionBasica, IdCentroAcopio) VALUES (@IdInformacionBasica, @IdCentroAcopio)
 		COMMIT TRANSACTION
 	END TRY
