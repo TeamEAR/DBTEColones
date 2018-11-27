@@ -219,7 +219,7 @@ GO
 
 -- =============================================
 -- Descripcion:	<Insertar parametros en la Tabla InformacionBasica AUXILIAR>
--- Parametro de Entrada: <Nombre, PrimerApellido, SegundoApellido, Identificacion, Correo, Contraseña, Telefono, NombreRol>
+-- Parametro de Entrada: <Nombre, PrimerApellido, SegundoApellido, Identificacion, Correo, Contraseï¿½a, Telefono, NombreRol>
 -- Parametro de Salida: <IdInformacionBasica>
 -- =============================================
 CREATE OR ALTER PROCEDURE InsertarInformacionBasica
@@ -228,7 +228,7 @@ CREATE OR ALTER PROCEDURE InsertarInformacionBasica
 	@SegundoApellido varchar(25),
 	@Identificacion varchar(10),
 	@Correo varchar(50),
-	@Contraseña varchar(50),
+	@ContraseÃ±a varchar(50),
 	@Telefono varchar (50),
 	@NombreRol varchar(25),
 	@IdInformacionBasica int OutPut
@@ -243,8 +243,8 @@ BEGIN
 
 	BEGIN TRAN
 	BEGIN TRY
-		INSERT INTO InformacionBasica(Nombre, PrimerApellido, SegundoApellido, Identificacion, Contraseña, IdTipoRol)
-		VALUES (@Nombre, @PrimerApellido, @SegundoApellido, @Identificacion, @Contraseña, @IdTipoRol)
+		INSERT INTO InformacionBasica(Nombre, PrimerApellido, SegundoApellido, Identificacion, ContraseÃ±a, IdTipoRol)
+		VALUES (@Nombre, @PrimerApellido, @SegundoApellido, @Identificacion, @ContrasÃ©Ã±a, @IdTipoRol)
 		SET @IdInformacionBasica= SCOPE_IDENTITY() --@@IDENTITY
 		EXEC InsertarContacto @Telefono, @Identificacion, 'Celular'
 		EXEC InsertarContacto @Correo, @Identificacion, 'Correo'
@@ -262,7 +262,7 @@ GO
 
 -- =============================================
 -- Descripcion:	<Insertar parametros en la Tabla Estudiante>
--- Parametro de Entrada: <Nombre, PrimerApellido, SegundoApellido, Identificacion, Correo, Contraseña, Telefono, NombreRol, FechaIncorporacion, Pasatiempo, NombreSedeXTEC>
+-- Parametro de Entrada: <Nombre, PrimerApellido, SegundoApellido, Identificacion, Correo, Contraseï¿½a, Telefono, NombreRol, FechaIncorporacion, Pasatiempo, NombreSedeXTEC>
 -- Parametro de Salida: <Ninguno>
 -- =============================================
 CREATE OR ALTER PROCEDURE InsertarEstudiante
@@ -271,7 +271,7 @@ CREATE OR ALTER PROCEDURE InsertarEstudiante
 	@SegundoApellido varchar(25),
 	@Identificacion varchar(10),
 	@Correo varchar(100),
-	@Contraseña varchar(50),
+	@ContraseÃ±a varchar(50),
 	@Telefono varchar (50),
 	@NombreRol varchar(25),
 	
@@ -290,7 +290,7 @@ BEGIN
 	
 	BEGIN TRAN
 	BEGIN TRY
-		EXEC @IdInformacionBasica = InsertarInformacionBasica @Nombre, @PrimerApellido, @SegundoApellido, @Identificacion, @Correo, @Contraseña, @Telefono, @NombreRol, @IdInformacionBasica
+		EXEC @IdInformacionBasica = InsertarInformacionBasica @Nombre, @PrimerApellido, @SegundoApellido, @Identificacion, @Correo, @ContraseÃ±a, @Telefono, @NombreRol, @IdInformacionBasica
 		INSERT INTO Estudiante(FechaIncorporacion, Pasatiempo, IdSedeXTEC, IdInformacionBasica) VALUES (@FechaIncorporacion, @Pasatiempo, @IdSedeXTEC, @IdInformacionBasica)
 		COMMIT TRANSACTION
 	END TRY
@@ -305,7 +305,7 @@ GO
 
 -- =============================================
 -- Descripcion:	<Insertar parametros en la Tabla Administrador>
--- Parametro de Entrada: <Nombre, PrimerApellido, SegundoApellido, Identificacion, Correo, Contraseña, Telefono, NombreRol, NombreDepartamento>
+-- Parametro de Entrada: <Nombre, PrimerApellido, SegundoApellido, Identificacion, Correo, Contraseï¿½a, Telefono, NombreRol, NombreDepartamento>
 -- Parametro de Salida: <Ninguno>
 -- =============================================
 CREATE OR ALTER PROCEDURE InsertarAdministrador
@@ -314,7 +314,7 @@ CREATE OR ALTER PROCEDURE InsertarAdministrador
 	@SegundoApellido varchar(25),
 	@Identificacion varchar(10),
 	@Correo varchar(100),
-	@Contraseña varchar(50),
+	@ContraseÃ±a varchar(50),
 	@Telefono varchar(50),
 	@NombreRol varchar(25),
 	
@@ -332,7 +332,7 @@ BEGIN
 	BEGIN TRAN
 	BEGIN TRY
 
-		EXEC @IdInformacionBasica = InsertarInformacionBasica @Nombre, @PrimerApellido, @SegundoApellido, @Identificacion, @Correo, @Contraseña, @Telefono, @NombreRol, @IdInformacionBasica
+		EXEC @IdInformacionBasica = InsertarInformacionBasica @Nombre, @PrimerApellido, @SegundoApellido, @Identificacion, @Correo, @ContraseÃ±a, @Telefono, @NombreRol, @IdInformacionBasica
 		INSERT INTO Administrador(IdDepartamento, IdInformacionBasica) VALUES (@IdDepartamento, @IdInformacionBasica)
 		COMMIT TRANSACTION
 	END TRY
@@ -379,7 +379,7 @@ GO
 
 -- =============================================
 -- Descripcion:	<Insertar parametros en la Tabla EncargadoCentroAcopio>
--- Parametro de Entrada: <Nombre, PrimerApellido, SegundoApellido, Identificacion, Correo, Contraseña, Telefono,NombreRol, IdentificadorCentroAcopio>
+-- Parametro de Entrada: <Nombre, PrimerApellido, SegundoApellido, Identificacion, Correo, Contraseï¿½a, Telefono,NombreRol, IdentificadorCentroAcopio>
 -- Parametro de Salida: <Ninguno>
 -- =============================================
 CREATE OR ALTER PROCEDURE InsertarAdministradorAcopio
@@ -388,7 +388,7 @@ CREATE OR ALTER PROCEDURE InsertarAdministradorAcopio
 	@SegundoApellido varchar(25),
 	@Identificacion varchar(10),
 	@Correo varchar(100),
-	@Contraseña varchar(50),
+	@ContraseÃ±a varchar(50),
 	@Telefono varchar(50),
 	@NombreRol varchar(25),
 	
@@ -405,7 +405,7 @@ BEGIN
 	
 	BEGIN TRAN
 	BEGIN TRY
-		EXEC @IdInformacionBasica = InsertarInformacionBasica @Nombre, @PrimerApellido, @SegundoApellido, @Identificacion, @Correo, @Contraseña, @Telefono, @NombreRol, @IdInformacionBasica
+		EXEC @IdInformacionBasica = InsertarInformacionBasica @Nombre, @PrimerApellido, @SegundoApellido, @Identificacion, @Correo, @ContraseÃ±a, @Telefono, @NombreRol, @IdInformacionBasica
 		INSERT INTO EncargadoCentroAcopio(IdInformacionBasica, IdCentroAcopio) VALUES (@IdInformacionBasica, @IdCentroAcopio)
 		COMMIT TRANSACTION
 	END TRY
@@ -773,3 +773,152 @@ WHILE @Columna< @UltimaColumna
 		
 	END
 GO
+
+--Consultas Administrador
+
+-- =============================================
+-- Descripcion:	<Obtener suma de PesoReciclaje para el tacometro>
+-- Parametro de Entrada: <Ninguno>
+-- Parametro de Salida: <Ninguno>
+-- =============================================
+CREATE OR ALTER PROCEDURE Tacometro 
+AS
+BEGIN
+	SELECT sum(PesoReciclaje) FROM CambioMaterialEstudiante
+END
+GO
+
+-- =============================================
+-- Descripcion:	<Obtener peso reciclado por mes durante aÃ±o meta>
+-- Parametro de Entrada: <Ninguno>
+-- Parametro de Salida: <Ninguno>
+-- =============================================
+CREATE OR ALTER PROCEDURE ColumnaSimple
+AS
+SET NOCOUNT ON	
+	DECLARE
+		@MesInicioFin int,
+		@Inicio int,
+		@Fin int
+
+BEGIN
+	SELECT @MesInicioFin = 11
+	SELECT @Inicio = YEAR(GETDATE()) - 1
+	SELECT @Fin = YEAR(GETDATE())
+	SELECT DATEPART(month, CambioMaterialEstudiante.FechaCambio) AS Mes, SUM(CambioMaterialEstudiante.PesoReciclaje) AS PesoTotal
+		FROM CambioMaterialEstudiante
+		WHERE (MONTH(CambioMaterialEstudiante.FechaCambio)>= @MesInicioFin AND YEAR(CambioMaterialEstudiante.FechaCambio) = @Inicio)
+			OR (MONTH(CambioMaterialEstudiante.FechaCambio)< @MesInicioFin AND YEAR(CambioMaterialEstudiante.FechaCambio) = @Fin)
+	GROUP BY DATEPART(month, CambioMaterialEstudiante.FechaCambio)
+END
+GO
+
+-- =============================================
+-- Descripcion:	<Obtener cantidad por mes de TEColones canjeados por tipo de beneficio durante aÃ±o meta>
+-- Parametro de Entrada: <Ninguno>
+-- Parametro de Salida: <Ninguno>
+-- =============================================
+CREATE OR ALTER PROCEDURE FilaApilada
+AS
+SET NOCOUNT ON	
+	DECLARE
+		@MesInicioFin int,
+		@Inicio int,
+		@Fin int
+
+BEGIN
+	SELECT @MesInicioFin = 11
+	SELECT @Inicio = YEAR(GETDATE()) - 1
+	SELECT @Fin = YEAR(GETDATE())
+	SELECT TP.NombreBeneficio , DATEPART(month, CambioBeneficioEstudiante.FechaCambio) AS Mes, SUM(CambioBeneficioEstudiante.TecolonesCambio) AS Total
+		FROM CambioBeneficioEstudiante
+		INNER JOIN TipoBeneficio TP ON CambioBeneficioEstudiante.IdTipoBeneficio = TP.IdTipoBeneficio
+		WHERE (MONTH(CambioBeneficioEstudiante.FechaCambio)>= @MesInicioFin AND YEAR(CambioBeneficioEstudiante.FechaCambio) = @Inicio)
+			OR (MONTH(CambioBeneficioEstudiante.FechaCambio)< @MesInicioFin AND YEAR(CambioBeneficioEstudiante.FechaCambio) = @Fin)
+	GROUP BY DATEPART(month, CambioBeneficioEstudiante.FechaCambio), TP.NombreBeneficio
+END
+GO
+
+-- =============================================
+-- Descripcion:	<Obtener el top 10 de estudiantes que mas han reciclado>
+-- Parametro de Entrada: <Ninguno>
+-- Parametro de Salida: <Ninguno>
+-- =============================================
+CREATE OR ALTER PROCEDURE TOP10
+AS
+SET NOCOUNT ON	
+	DECLARE
+		@MesInicioFin int,
+		@Inicio int,
+		@Fin int
+
+BEGIN
+	SELECT @MesInicioFin = 11
+	SELECT @Inicio = YEAR(GETDATE()) - 1
+	SELECT @Fin = YEAR(GETDATE())
+	SELECT TOP 10 CONCAT(InformacionBasica.Nombre, ' ',InformacionBasica.PrimerApellido, ' ',InformacionBasica.SegundoApellido) AS Nombre, InformacionBasica.Identificacion AS Carnet, SedeXTEC.NombreSedeXTEC, SUM(CambioMaterialEstudiante.PesoReciclaje) AS [Cantidad Material]
+		FROM CambioMaterialEstudiante
+		INNER JOIN Estudiante ON CambioMaterialEstudiante.IdEstudiante = Estudiante.IdEstudiante
+		INNER JOIN InformacionBasica ON Estudiante.IdEstudiante = InformacionBasica.IdInformacionBasica
+		INNER JOIN SedeXTEC ON Estudiante.IdSedeXTEC = SedeXTEC.IdSedeXTEC
+		WHERE (MONTH(CambioMaterialEstudiante.FechaCambio)>= @MesInicioFin AND YEAR(CambioMaterialEstudiante.FechaCambio) = @Inicio)
+			OR (MONTH(CambioMaterialEstudiante.FechaCambio)< @MesInicioFin AND YEAR(CambioMaterialEstudiante.FechaCambio) = @Fin)
+	GROUP BY  InformacionBasica.Identificacion, InformacionBasica.Nombre, InformacionBasica.PrimerApellido, InformacionBasica.SegundoApellido, SedeXTEC.NombreSedeXTEC
+	ORDER BY SUM(CambioMaterialEstudiante.PesoReciclaje) DESC;
+END
+GO
+
+-- =============================================
+-- Descripcion:	<Obtener la cantidad de TEColones que han sido entrgados por mes>
+-- Parametro de Entrada: <Ninguno>
+-- Parametro de Salida: <Ninguno>
+-- =============================================
+CREATE OR ALTER PROCEDURE TEColonesEntregados
+AS
+SET NOCOUNT ON	
+	DECLARE
+		@MesInicioFin int,
+		@Inicio int,
+		@Fin int
+
+BEGIN
+	SELECT @MesInicioFin = 11
+	SELECT @Inicio = YEAR(GETDATE()) - 1
+	SELECT @Fin = YEAR(GETDATE())
+	SELECT MONTH(CambioMaterialEstudiante.FechaCambio) AS Mes, SUM(CambioMaterialEstudiante.TecolonesAdquiridos) AS Puntos
+		FROM CambioMaterialEstudiante
+		WHERE (MONTH(CambioMaterialEstudiante.FechaCambio)>= @MesInicioFin AND YEAR(CambioMaterialEstudiante.FechaCambio) = @Inicio)
+			OR (MONTH(CambioMaterialEstudiante.FechaCambio)< @MesInicioFin AND YEAR(CambioMaterialEstudiante.FechaCambio) = @Fin)
+		GROUP BY MONTH(CambioMaterialEstudiante.FechaCambio)
+END
+GO
+
+-- =============================================
+-- Descripcion:	<Obtener la cantidad de toneladas recicladas por sede>
+-- Parametro de Entrada: <Ninguno>
+-- Parametro de Salida: <Ninguno>
+-- =============================================
+CREATE OR ALTER PROCEDURE ToneladasSede
+AS
+SET NOCOUNT ON	
+	DECLARE
+		@MesInicioFin int,
+		@Inicio int,
+		@Fin int
+
+BEGIN
+	SELECT @MesInicioFin = 11
+	SELECT @Inicio = YEAR(GETDATE()) - 1
+	SELECT @Fin = YEAR(GETDATE())
+	SELECT SedeXTEC.NombreSedeXTEC AS Sede, SUM(CME.PesoReciclaje) AS PesoTotal
+	FROM CambioMaterialEstudiante CME
+	INNER JOIN EncargadoCentroAcopio ECA ON  CME.IdEncargadoCentroAcopio = ECA.IdEncargadoCentroAcopio
+	INNER JOIN CentroAcopio CA ON  ECA.IdCentroAcopio = CA.IdCentroAcopio
+	INNER JOIN SedeXTEC ON CA.IdSedeXTEC = SedeXTEC.IdSedeXTEC
+	WHERE (MONTH(CME.FechaCambio)>= @MesInicioFin AND YEAR(CME.FechaCambio) = @Inicio)
+		OR (MONTH(CME.FechaCambio)< @MesInicioFin AND YEAR(CME.FechaCambio) = @Fin)
+	GROUP BY SedeXTEC.NombreSedeXTEC
+END
+GO
+
+EXECUTE ToneladasSede
